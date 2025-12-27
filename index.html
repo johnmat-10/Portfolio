@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Academic Portfolio | John Mathew</title>
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;700&family=Outfit:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;700&family=Outfit:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&family=Rock+Salt&display=swap" rel="stylesheet">
     <style>
         :root {
             /* Transitions for theme switching */
@@ -154,49 +154,72 @@
             flex-wrap: wrap;
         }
 
-        /* UPDATED: Avatar Circle becomes a Monogram Container */
-        .avatar-circle {
-            width: 50px; height: 50px;
-            background: var(--bg);
-            border-radius: 50%;
-            overflow: visible; /* Changed to visible for the ring */
+        /* REIMAGINED: Modern Minimalist Logo */
+        .modern-logo {
+            width: 52px; 
+            height: 52px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            
             margin-bottom: 20px;
-            box-shadow: 0 4px 15px var(--accent-glow);
-            border: 2px solid var(--accent);
-            display: flex; align-items: center; justify-content: center;
-            position: relative;
             cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
 
-        .avatar-circle span {
+        .ml-text {
             font-family: var(--font-accent);
             font-weight: 800;
-            font-size: 0.9rem;
+            font-size: 1.3rem;
             color: var(--text);
-            z-index: 5;
-            letter-spacing: -0.5px;
+            letter-spacing: -1px;
+            z-index: 2;
+            transition: transform 0.3s ease;
         }
 
-        /* Animated Bio-Data Ring */
-        .avatar-circle::after {
+        .ml-dot {
+            color: var(--accent);
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        /* Subtle gradient sheen */
+        .modern-logo::after {
             content: "";
             position: absolute;
-            top: -6px; left: -6px; right: -6px; bottom: -6px;
-            border-radius: 50%;
-            border: 1px dashed var(--accent);
-            opacity: 0.3;
-            animation: rotate-ring 12s linear infinite;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 60%);
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 0.4s ease;
+            z-index: 1;
         }
 
-        @keyframes rotate-ring {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+        /* Hover Effects */
+        .modern-logo:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px var(--accent-glow);
         }
 
-        .avatar-circle:hover::after {
-            opacity: 0.6;
-            border-style: solid;
-            border-width: 1.5px;
+        .modern-logo:hover::after {
+            opacity: 0.4;
+            transform: scale(1);
+        }
+
+        /* Subtle animation for the dot */
+        .modern-logo:hover .ml-dot {
+            transform: scale(1.3);
         }
 
         .name { font-size: 1.1rem; letter-spacing: -0.5px; font-weight: 700; }
@@ -357,6 +380,20 @@
         .item-coding:hover span { color: var(--glow-coding); }
         .item-creative:hover svg { color: var(--glow-creative); filter: drop-shadow(0 0 10px var(--glow-creative)); opacity: 1; }
         .item-creative:hover span { color: var(--glow-creative); }
+
+        /* Mobile specific glow animation */
+        @keyframes mobile-glow {
+            0% { 
+                color: var(--text-dim); 
+                filter: drop-shadow(0 0 0 transparent);
+                opacity: 0.7;
+            }
+            100% { 
+                color: var(--target-color); 
+                filter: drop-shadow(0 0 8px var(--target-color));
+                opacity: 1;
+            }
+        }
 
         /* --- ABOUT --- */
         .about-grid { display: flex; flex-direction: column; gap: 40px; }
@@ -712,6 +749,26 @@
         .academic-card.is-flipped:hover .card-back { border-color: var(--glow-extra); }
         .card-back { transform: rotateY(180deg); background: linear-gradient(135deg, var(--surface), var(--bg)); }
 
+        /* COVID Icon Animation */
+        @keyframes virus-glow {
+            0%, 100% { 
+                filter: none; 
+                transform: scale(1);
+            }
+            50% { 
+                /* Red Shift: Sepia -> High Saturation -> Hue Rotate to Red + Red Drop Shadow */
+                filter: sepia(1) saturate(5) hue-rotate(-50deg) drop-shadow(0 0 8px rgba(239, 68, 68, 0.8));
+                transform: scale(1.15);
+            }
+        }
+
+        .covid-icon {
+            width: 24px; 
+            height: 24px; 
+            object-fit: contain;
+            animation: virus-glow 2s infinite ease-in-out;
+        }
+
         /* UPDATED: Flex direction column ensures vertical stacking on ALL screens */
         .card-meta { 
             display: flex; 
@@ -978,12 +1035,25 @@
             font-size: 0.85rem;
             color: var(--text-dim);
             text-decoration: none;
-            transition: color 0.2s;
+            transition: all 0.3s ease; /* Smoother transition for glow */
             display: block;
+            padding: 2px 0;
         }
         
         .featured-articles-list a:hover {
             color: var(--accent);
+            transform: translateX(5px); /* Subtle move effect */
+        }
+
+        /* Domain-specific Glow Effects */
+        .featured-articles-list a[href*="thebridge.in"]:hover {
+            color: #f24156;
+            text-shadow: 0 0 10px rgba(242, 65, 86, 0.4);
+        }
+
+        .featured-articles-list a[href*="medium.com"]:hover {
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
         }
 
         @keyframes fadeIn {
@@ -1124,6 +1194,48 @@
             grid-template-columns: 1.8fr 1fr; /* Asymmetric split */
             gap: 25px;
             margin-top: 20px;
+        }
+
+        /* Maintenance Overlay Styles */
+        .resume-overlay {
+            position: absolute;
+            top: 55%; /* Slightly lower to center visually with content */
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            background: var(--surface);
+            border: 1px solid var(--accent);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 0 50px rgba(0,0,0,0.5), 0 0 20px var(--accent-glow);
+            backdrop-filter: blur(10px);
+            width: 90%;
+            max-width: 450px;
+        }
+
+        .resume-overlay h4 {
+            font-family: var(--font-accent);
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .resume-overlay p {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+        }
+
+        /* Blur Effect Class */
+        .resume-blur {
+            filter: blur(8px) grayscale(60%);
+            pointer-events: none;
+            user-select: none;
+            opacity: 0.4;
         }
 
         .resume-col {
@@ -1721,8 +1833,33 @@
             h1 { font-size: 2.2rem; }
             .hero-sub { font-size: 1rem; }
             .hero-scrapbook { font-size: 1rem; padding-left: 15px; margin-bottom: 30px; }
-            .discipline-item span { display: none; } 
+            /* REMOVED: .discipline-item span { display: none; } - Text is now visible */
             .discipline-item svg { width: 28px; height: 28px; }
+            
+            /* Apply Mobile Glow & Visibility settings */
+            .item-biotech { --target-color: var(--glow-biotech); }
+            .item-bioinfo { --target-color: var(--glow-bioinfo); }
+            .item-analysis { --target-color: var(--glow-analysis); }
+            .item-coding { --target-color: var(--glow-coding); }
+            .item-creative { --target-color: var(--glow-creative); }
+
+            .discipline-item svg {
+                animation: mobile-glow 2s infinite alternate ease-in-out;
+            }
+            
+            /* Stagger animations so they don't all blink at once */
+            .item-bioinfo svg { animation-delay: 0.4s; }
+            .item-analysis svg { animation-delay: 0.8s; }
+            .item-coding svg { animation-delay: 1.2s; }
+            .item-creative svg { animation-delay: 1.6s; }
+
+            .discipline-item span {
+                display: block !important;
+                font-size: 0.55rem; /* Slightly smaller to fit */
+                color: var(--target-color); /* Permanent color on mobile */
+                opacity: 0.9;
+                margin-top: 4px;
+            }
         }
 
         /* --- 3D Carousel Active State & Animation --- */
@@ -1802,9 +1939,11 @@
                     </svg>
                 </button>
 
-                <div class="avatar-circle">
-                    <span>JM</span>
+                <!-- Clickable Modern Logo -->
+                <div class="modern-logo" onclick="document.getElementById('home').scrollIntoView({behavior: 'smooth'})" title="Back to Top">
+                    <span class="ml-text">JM<span class="ml-dot">.</span></span>
                 </div>
+
                 <div>
                     <h2 class="name">John Mathew</h2>
                     <p class="tagline">Biotechnology & Comp Bio</p>
@@ -1833,7 +1972,7 @@
                 <span class="gradient-text">Hello, I’m John.</span>
             </h1>
             <p class="hero-sub">I am a Graduate student in Biotechnology and Botany with interests spanning science, data, technology and creative expression.</p>
-            <p class="hero-scrapbook">Think of this portfolio as a digital scrapbook—structured around academic and professional work, while leaving room for personal quirks through design, wordplay, and photographs.</p>
+            <p class="hero-scrapbook">A digital archive of my research in the lab, experiments with code, and perspectives on the world.</p>
             
             <div class="hero-disciplines">
                 <div class="discipline-item item-biotech" title="Biotechnology">
@@ -1912,7 +2051,7 @@
                 <!-- Text Body Content starts below -->
                 <div class="about-body-text">
                     <p class="personal-para">
-                        I am a graduate in biotechnology and botany, originally from Kerala, India. Having spent a significant part of my childhood in Abu Dhabi, UAE, and most of my academic life since 10th grade in India, I’ve learned to adapt across places, cultures, and ways of thinking. I suppose it’s fair to say I fit in both — or perhaps nowhere entirely. Either way, it shaped how I see the world.
+                        I am an undergraduate student in biotechnology and botany, originally from Kerala, India. Having spent a significant part of my childhood in Abu Dhabi, UAE, and most of my academic life since 10th grade in India, I’ve learned to adapt across places, cultures, and ways of thinking. I suppose it’s fair to say I fit in both — or perhaps nowhere entirely. Either way, it shaped how I see the world.
                     </p>
                     
                     <div class="about-expanded-content" id="about-expandable">
@@ -2059,10 +2198,7 @@
                             <span class="extra-label">The COVID Edition</span>
                             <h3 style="font-family: var(--font-accent); font-size: 1.4rem; margin-bottom: 15px; color: var(--text); display: flex; align-items: center; gap: 10px;">
                                 Batch of '22
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--glow-bioinfo);">
-                                    <circle cx="12" cy="12" r="5"></circle>
-                                    <path d="M12 1v2"></path><path d="M12 21v2"></path><path d="M4.22 4.22l1.42 1.42"></path><path d="M18.36 18.36l1.42 1.42"></path><path d="M1 12h2"></path><path d="M21 12h2"></path><path d="M4.22 19.78l1.42-1.42"></path><path d="M18.36 5.64l1.42-1.42"></path>
-                                </svg>
+                                <img src="https://raw.githubusercontent.com/johnmat-10/Portfolio/main/covid-19-un.svg" alt="COVID-19" class="covid-icon">
                             </h3>
                             <ul class="extra-list">
                                 <li>
@@ -2367,9 +2503,10 @@
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
                                 </button>
                                 <ul class="featured-articles-list">
-                                    <li><a href="#" target="_blank">Placeholder Article Title 1 (Medium)</a></li>
-                                    <li><a href="#" target="_blank">Placeholder Article Title 2 (The Bridge)</a></li>
-                                    <li><a href="#" target="_blank">Placeholder Article Title 3</a></li>
+                                    <li><a href="https://medium.com/@john.nn/goalkeeper-profiling-fc-barcelona-dea66ac8b7b4" target="_blank">Goalkeeper Profiling: FC Barcelona (Medium)</a></li>
+                                    <li><a href="https://medium.com/@john.nn/barcelonas-offside-trap-flick-s-brilliance-or-a-flickering-flame-f448674aa20c" target="_blank">Barcelona's Offside Trap (Medium)</a></li>
+                                    <li><a href="https://thebridge.in/football/india-football-striker-crisis-sunil-chhetri-comeback-52401" target="_blank">India's Striker Crisis (The Bridge)</a></li>
+                                    <li><a href="https://thebridge.in/football/afc-asian-cup-india-uzbekistan-players-watch-out-45618" target="_blank">AFC Asian Cup Analysis (The Bridge)</a></li>
                                 </ul>
                             </div>
                             <div>
@@ -2381,22 +2518,15 @@
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
                                 </button>
                                 <ul class="featured-articles-list">
-                                    <li><a href="#" target="_blank">Placeholder Story 1</a></li>
-                                    <li><a href="#" target="_blank">Placeholder Story 2</a></li>
+                                    <li><a href="https://medium.com/@john.nn/how-did-ivangelism-take-india-by-storm-7a4f19c6d725" target="_blank">How 'Ivangelism' Took India by Storm (Medium)</a></li>
+                                    <li><a href="https://medium.com/@john.nn/sergio-castel-the-football-backpacker-24fa4504f3be" target="_blank">Sergio Castel: The Football Backpacker (Medium)</a></li>
+                                    <li><a href="https://thebridge.in/football/khalid-jamil-jamshedpur-fc-isl-coach-story-53104" target="_blank">Khalid Jamil's Jamshedpur Story (The Bridge)</a></li>
+                                    <li><a href="https://thebridge.in/football/everything-is-wrong-with-indian-football-47929" target="_blank">Everything is Wrong with Indian Football (The Bridge)</a></li>
                                 </ul>
                             </div>
                             <div>
                                 <h5>Personal/Opinionated Writing</h5>
                                 <p>Film reviews on letterboxd.</p>
-                                
-                                <button class="featured-articles-trigger" onclick="toggleFeaturedArticles(this)">
-                                    Featured Articles
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                                </button>
-                                <ul class="featured-articles-list">
-                                    <li><a href="#" target="_blank">Placeholder Review 1</a></li>
-                                    <li><a href="#" target="_blank">Placeholder Review 2</a></li>
-                                </ul>
                             </div>
                         </div>
                     </div>
@@ -3057,6 +3187,13 @@
     </div>
 
     <script>
+        // Global variables for Carousel state
+        let carousel, cards, numCards, angleStep;
+        let currAngle = 0;
+        let radius = 320; 
+        let startX = 0;
+        let isDragging = false;
+
         function toggleTheme() {
             const html = document.documentElement;
             const currentTheme = html.getAttribute('data-theme');
@@ -3068,6 +3205,7 @@
 
         function updateThemeIcon(theme) {
             const icon = document.getElementById('themeIcon');
+            if (!icon) return;
             if (theme === 'light') {
                 icon.innerHTML = '<circle cx="12" cy="12" r="5" stroke-width="2"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>';
             } else {
@@ -3100,10 +3238,9 @@
 
         function toggleModal(show) {
             const modal = document.getElementById('contactModal');
-            modal.classList.toggle('active', show);
+            if (modal) modal.classList.toggle('active', show);
         }
 
-        /* --- NEW MOBILE MENU FUNCTION --- */
         function toggleMobileMenu() {
             const nav = document.getElementById('navbar');
             const footer = document.getElementById('sidebarFooter');
@@ -3154,64 +3291,30 @@
             }
         }
 
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        document.documentElement.setAttribute('data-theme', savedTheme);
-        updateThemeIcon(savedTheme);
-
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { 
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible'); 
-                }
-            });
-        }, { threshold: 0.15 });
-        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-        const navLinks = document.querySelectorAll('.nav-link');
-        const sections = document.querySelectorAll('section');
-        window.addEventListener('scroll', () => {
-            let current = "";
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (window.pageYOffset >= (sectionTop - 300)) current = section.getAttribute('id');
-            });
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').includes(current)) link.classList.add('active');
-            });
-        });
-
-        // Auto-flip back academic cards when scrolled out of view
-        const cardFlipObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (!entry.isIntersecting) {
-                    entry.target.classList.remove('is-flipped');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.academic-card').forEach(card => {
-            cardFlipObserver.observe(card);
-        });
-
-        // --- 3D Carousel Logic ---
-        const carousel = document.getElementById('carousel');
-        const cards = carousel.querySelectorAll('.interest-card');
-        const numCards = cards.length;
-        const angleStep = 360 / numCards;
-        let currAngle = 0;
-        let radius = 320; // Distance from center
-
-        // Function to update the active card class based on rotation
-        function updateActiveCard() {
-            // Calculate which index is currently at 0 degrees (front)
-            // We use modulo to wrap around the array
-            let normalizedIndex = Math.round(currAngle / angleStep) % numCards;
+        // Carousel Functions
+        function initCarousel() {
+            if (!carousel || !cards) return;
             
-            // Handle negative indices from rotating backwards
-            if (normalizedIndex < 0) {
-                normalizedIndex += numCards;
+            // Adjust radius based on screen width for responsiveness
+            if (window.innerWidth <= 850) {
+                radius = 260; 
+            } else {
+                radius = 320;
             }
+
+            cards.forEach((card, index) => {
+                const theta = angleStep * index;
+                card.style.transform = `rotateY(${theta}deg) translateZ(${radius}px)`;
+            });
+            
+            carousel.style.transform = `translateZ(-${radius}px) rotateY(${-currAngle}deg)`;
+            updateActiveCard();
+        }
+
+        function updateActiveCard() {
+            if (!cards) return;
+            let normalizedIndex = Math.round(currAngle / angleStep) % numCards;
+            if (normalizedIndex < 0) normalizedIndex += numCards;
 
             cards.forEach((card, index) => {
                 if (index === normalizedIndex) {
@@ -3222,71 +3325,86 @@
             });
         }
 
-        // Initialize Card Positions
-        function initCarousel() {
-            // Adjust radius based on screen width for responsiveness
-            if (window.innerWidth <= 850) {
-                radius = 260; 
-            } else {
-                radius = 320;
-            }
-
-            cards.forEach((card, index) => {
-                const theta = angleStep * index;
-                // Position cards in a circle
-                card.style.transform = `rotateY(${theta}deg) translateZ(${radius}px)`;
-            });
-            
-            // Apply initial transform to container to set correct depth immediately
-            carousel.style.transform = `translateZ(-${radius}px) rotateY(${-currAngle}deg)`;
-            
-            updateActiveCard(); // Set initial active card
-        }
-
         function rotateCarousel(direction) {
+            if (!carousel) return;
             currAngle += direction * angleStep;
             carousel.style.transform = `translateZ(-${radius}px) rotateY(${-currAngle}deg)`;
-            updateActiveCard(); // Update active card on rotation
+            updateActiveCard();
         }
 
-        // Initialize on load and resize
-        initCarousel();
-        window.addEventListener('resize', () => {
-            initCarousel();
-            // Re-apply current rotation with new radius (resetting visual)
-            carousel.style.transform = `translateZ(-${radius}px) rotateY(${-currAngle}deg)`;
-        });
+        // Main Initialization
+        document.addEventListener('DOMContentLoaded', () => {
+            // Theme Init
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            updateThemeIcon(savedTheme);
 
-        // Touch/Swipe Support for Carousel
-        let startX = 0;
-        let isDragging = false;
+            // Observers
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => { 
+                    if (entry.isIntersecting) entry.target.classList.add('visible'); 
+                });
+            }, { threshold: 0.15 });
+            document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-        carousel.addEventListener('touchstart', (e) => {
-            startX = e.touches[0].clientX;
-            isDragging = true;
-        });
+            // Nav Highlight
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('section');
+            window.addEventListener('scroll', () => {
+                let current = "";
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (window.pageYOffset >= (sectionTop - 300)) current = section.getAttribute('id');
+                });
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').includes(current)) link.classList.add('active');
+                });
+            });
 
-        carousel.addEventListener('touchmove', (e) => {
-            if (!isDragging) return;
-            const currentX = e.touches[0].clientX;
-            const diffX = startX - currentX;
-            
-            // Simple threshold to determine swipe direction
-            if (Math.abs(diffX) > 50) { // 50px threshold
-                if (diffX > 0) {
-                    rotateCarousel(1); // Swipe Left -> Next
-                } else {
-                    rotateCarousel(-1); // Swipe Right -> Prev
-                }
-                isDragging = false; // Prevent multiple rotations per swipe
+            // Card Flip Observer
+            const cardFlipObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) entry.target.classList.remove('is-flipped');
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.academic-card').forEach(card => cardFlipObserver.observe(card));
+
+            // Carousel Init
+            carousel = document.getElementById('carousel');
+            if (carousel) {
+                cards = carousel.querySelectorAll('.interest-card');
+                numCards = cards.length;
+                angleStep = 360 / numCards;
+                
+                initCarousel();
+                
+                // Touch Events
+                carousel.addEventListener('touchstart', (e) => {
+                    startX = e.touches[0].clientX;
+                    isDragging = true;
+                });
+
+                carousel.addEventListener('touchmove', (e) => {
+                    if (!isDragging) return;
+                    const currentX = e.touches[0].clientX;
+                    const diffX = startX - currentX;
+                    if (Math.abs(diffX) > 50) {
+                        if (diffX > 0) rotateCarousel(1);
+                        else rotateCarousel(-1);
+                        isDragging = false;
+                    }
+                });
+
+                carousel.addEventListener('touchend', () => { isDragging = false; });
+                
+                // Resize listener
+                window.addEventListener('resize', () => {
+                    initCarousel();
+                    carousel.style.transform = `translateZ(-${radius}px) rotateY(${-currAngle}deg)`;
+                });
             }
         });
-
-        carousel.addEventListener('touchend', () => {
-            isDragging = false;
-        });
-
     </script>
 </body>
-
 </html>
