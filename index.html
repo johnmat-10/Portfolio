@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Academic Portfolio | John Mathew</title>
+    <!-- Favicon: JM Monogram -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%230F172A%22/><text x=%2250%22 y=%2270%22 font-family=%22sans-serif%22 font-weight=%22900%22 font-size=%2250%22 text-anchor=%22middle%22 fill=%22%23F1F5F9%22>JM<tspan fill=%22%2322D3EE%22>.</tspan></text></svg>">
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;700&family=Outfit:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&family=Rock+Salt&display=swap" rel="stylesheet">
     <style>
@@ -854,6 +856,7 @@
             transition: var(--theme-transition); 
             overflow: hidden; 
             position: relative; 
+            cursor: pointer; /* Added cursor pointer */
             /* margin-bottom removed as gap handles it */
         }
         .project-card:hover { border-color: var(--accent); }
@@ -2056,7 +2059,7 @@
                     
                     <div class="about-expanded-content" id="about-expandable">
                         <p class="personal-para">
-                            Growing up, my interests shifted constantly. Science came first, followed by literature, then art. Over time, I encountered the idea of interdisciplinary and transdisciplinary thinking — and suddenly, these seemingly separate interests no longer felt fragmented. They began to merge. That realization explains how I arrived here.
+                            Growing up, my interests shifted constantly. Science came first, followed by literature, then art. Over time, I encountered the idea of interdisciplinary and transdisciplinary thinking. Suddenly, these seemingly separate interests no longer felt fragmented. They began to merge. That realization explains how I arrived here.
                         </p>
 
                         <p class="personal-para">
@@ -2064,12 +2067,11 @@
                         </p>
 
                         <p class="personal-para">
-                            Somewhere at the intersection of all these domains, I found computational biology.
-                            In this space, life is studied using technology; insights are derived through mathematical reasoning; and the results are communicated through thoughtful visualization and design. That blend — analytical yet creative, patient yet adaptive — felt instinctively right. It is why I aspire to pursue a Master’s degree in Computational Biology.
+                            Somewhere at the intersection of all these domains, I found computational biology. In this space, life is studied using technology; insights are derived through mathematical reasoning; and the results are communicated through thoughtful visualization and design. That blend of analytical yet creative, patient yet adaptive approach felt instinctively right. It is why I aspire to pursue a Master’s degree in Computational Biology.
                         </p>
 
                         <p class="personal-para">
-                            Biology itself rarely changes — what changes is how much we understand it. Technology, on the other hand, evolves relentlessly. I’m drawn to working at this intersection: staying adaptable enough to keep pace with technology, while remaining patient enough to let biological systems reveal their patterns in their own time.
+                            Biology itself rarely changes; what changes is how much we understand it. Technology, on the other hand, evolves relentlessly. I’m drawn to working at this intersection: staying adaptable enough to keep pace with technology, while remaining patient enough to let biological systems reveal their patterns in their own time.
                         </p>
                     </div>
                     
@@ -2255,12 +2257,12 @@
                 <!-- CATEGORY 1: RESEARCH & ANALYTICS (2 Cards) -->
                 
                 <!-- Card 1: RGCB Project -->
-                <div class="project-card" id="project-1" style="border-left: 3px solid var(--glow-biotech);">
+                <div class="project-card" id="project-1" style="border-left: 3px solid var(--glow-biotech);" onclick="toggleProject(event, 'project-1')">
                     <div class="card-header">
                         <div class="project-title">
                             CADD & QSPR Analysis on nAChRs
                         </div>
-                        <button class="expand-trigger" onclick="toggleProject('project-1')" aria-label="Expand">
+                        <button class="expand-trigger" aria-label="Expand">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line class="v-line" x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                         </button>
                     </div>
@@ -2298,12 +2300,12 @@
                 </div>
 
                 <!-- Card 2: Phytochemical-Assisted Dye Degradation -->
-                <div class="project-card" id="project-2" style="border-left: 3px solid var(--glow-biotech);">
+                <div class="project-card" id="project-2" style="border-left: 3px solid var(--glow-biotech);" onclick="toggleProject(event, 'project-2')">
                     <div class="card-header">
                         <div class="project-title">
                             Phytochemical-Assisted Dye Degradation
                         </div>
-                        <button class="expand-trigger" onclick="toggleProject('project-2')" aria-label="Expand">
+                        <button class="expand-trigger" aria-label="Expand">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line class="v-line" x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                         </button>
                     </div>
@@ -2347,12 +2349,12 @@
                 <!-- CATEGORY 2: DATA ANALYSIS & VISUALIZATION (2 Cards) -->
 
                 <!-- Card 3: Flagship Sports Analytics -->
-                <div class="project-card" id="project-3" style="border-left: 3px solid var(--glow-analysis);">
+                <div class="project-card" id="project-3" style="border-left: 3px solid var(--glow-analysis);" onclick="toggleProject(event, 'project-3')">
                     <div class="card-header">
                         <div class="project-title">
                             Performance Analysis - Players
                         </div>
-                        <button class="expand-trigger" onclick="toggleProject('project-3')" aria-label="Expand">
+                        <button class="expand-trigger" aria-label="Expand">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line class="v-line" x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                         </button>
                     </div>
@@ -2390,12 +2392,12 @@
                 </div>
 
                 <!-- Card 4: Goalkeeper Analysis -->
-                <div class="project-card" id="project-4" style="border-left: 3px solid var(--glow-analysis);">
+                <div class="project-card" id="project-4" style="border-left: 3px solid var(--glow-analysis);" onclick="toggleProject(event, 'project-4')">
                     <div class="card-header">
                         <div class="project-title">
                             Keeper Performance & Style Analysis
                         </div>
-                        <button class="expand-trigger" onclick="toggleProject('project-4')" aria-label="Expand">
+                        <button class="expand-trigger" aria-label="Expand">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line class="v-line" x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                         </button>
                     </div>
@@ -2433,12 +2435,12 @@
                 <!-- CATEGORY 3: EXPERIMENTALS & TOOLS (1 Card) -->
 
                 <!-- Card 5: Tools -->
-                <div class="project-card" id="project-5" style="border-left: 3px solid var(--glow-coding);">
+                <div class="project-card" id="project-5" style="border-left: 3px solid var(--glow-coding);" onclick="toggleProject(event, 'project-5')">
                     <div class="card-header">
                         <div class="project-title">
                             Experimentals & Tools
                         </div>
-                        <button class="expand-trigger" onclick="toggleProject('project-5')" aria-label="Expand">
+                        <button class="expand-trigger" aria-label="Expand">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line class="v-line" x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                         </button>
                     </div>
@@ -2466,12 +2468,21 @@
                             </div>
 
                             <!-- Item 3 -->
-                            <div>
+                            <div style="border-bottom: 1px dashed var(--border); padding-bottom: 15px;">
                                 <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px;">
                                     <h5 style="margin: 0; color: var(--text); font-size: 0.95rem;">Simple Expected Goals Model</h5>
                                     <span style="font-size: 0.6rem; color: var(--text-dim); border: 1px solid var(--text-dim); padding: 2px 6px; border-radius: 4px; font-weight: 700;">Concept</span>
                                 </div>
                                 <p>A mathematically modelled tool that can give xG values for a shot taken on a football field.</p>
+                            </div>
+
+                            <!-- Item 4 -->
+                            <div>
+                                <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px;">
+                                    <h5 style="margin: 0; color: var(--text); font-size: 0.95rem;">Tic-tac-toe Key</h5>
+                                    <span style="font-size: 0.6rem; color: var(--text-dim); border: 1px solid var(--text-dim); padding: 2px 6px; border-radius: 4px; font-weight: 700;">Concept</span>
+                                </div>
+                                <p>How to win the game as much as possible.</p>
                             </div>
                         </div>
                     </div>
@@ -2480,12 +2491,12 @@
                 <!-- CATEGORY 4: JOURNALISM & WRITING (1 Card) -->
 
                 <!-- Card 6: Writing -->
-                <div class="project-card" id="project-6" style="border-left: 3px solid var(--glow-bioinfo);">
+                <div class="project-card" id="project-6" style="border-left: 3px solid var(--glow-bioinfo);" onclick="toggleProject(event, 'project-6')">
                     <div class="card-header">
                         <div class="project-title">
                             Journalism & Writing
                         </div>
-                        <button class="expand-trigger" onclick="toggleProject('project-6')" aria-label="Expand">
+                        <button class="expand-trigger" aria-label="Expand">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line class="v-line" x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                         </button>
                     </div>
@@ -3213,7 +3224,12 @@
             }
         }
 
-        function toggleProject(id) {
+        function toggleProject(event, id) {
+            // Check if the click was on an interactive element (link or button other than the expand trigger)
+            if (event.target.closest('a') || (event.target.closest('button') && !event.target.closest('.expand-trigger'))) {
+                return;
+            }
+
             // Close all other open projects first
             document.querySelectorAll('.project-card').forEach(card => {
                 if (card.id !== id && card.classList.contains('active')) {
